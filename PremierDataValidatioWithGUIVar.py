@@ -20,22 +20,32 @@ browser.execute_script("document.getElementsByClassName('ss-card-name')[2].click
 browser.implicitly_wait(15)
 NewWindow = browser.window_handles[1]
 browser.switch_to.window(NewWindow)
-browser.execute_script("centerFrame.contentDocument.getElementsByClassName('tabLabel')[2].click()") #Click on Publishing
-time.sleep(10)
+j=0
+Test = "centerFrame.contentDocument.getElementsByClassName('tabLabel')[2].click()"#Click on Publishing
+browser.execute_script(Test)
+
+time.sleep(20)
 ValidCount = browser.execute_script("return centerFrame.contentDocument.getElementsByClassName('dgrid-content ui-widget-content')[2].getElementsByTagName('a').length") #Get number of "Start Data Validation" on page
 for i in range(1, ValidCount+1):
-    browser.execute_script("centerFrame.contentDocument.getElementsByClassName('dgrid-cell dgrid-cell-padding dgrid-column-4 field-statusTxt')[1].getElementsByTagName('a')[0].click()") #Click on first "Start Data Validation" 
-    time.sleep(5)
-    browser.execute_script("centerFrame.contentDocument.getElementById('nextBtn_label').click()") #Click on "Continue Publishing Data"
-    time.sleep(10)
-    browser.execute_script("centerFrame.contentDocument.getElementById('ap-deselect-all-0').click()") #Deselect whole last column
-    time.sleep(1)
-    browser.execute_script("centerFrame.contentDocument.getElementById('nextBtn_label').click()") #Click on "Continue Publishing Data"
-    time.sleep(5)
-    browser.execute_script("centerFrame.contentDocument.getElementsByClassName('dijitReset dijitCheckBoxInput')[1].click()") #Click on middle bullet
-    time.sleep(1)
-    browser.execute_script("centerFrame.contentDocument.getElementById('cancelLink').click()") #Click Cancel
-    #browser.execute_script("centerFrame.contentDocument.getElementById('doneBtn_label').click()") #Click on "Complete Publishing Data"
-    time.sleep(5)
-    
+    EntityName = "return centerFrame.contentDocument.getElementsByClassName('dgrid-cell dgrid-cell-padding dgrid-column-0 field-entityName')[%s].textContent" %(str(i))
+    PrintEntity = browser.execute_script(EntityName)
+    print(PrintEntity)
+   # print(i)
+    if PrintEntity.find("Beth Israel") != -1:
+      j=j+1
+      print(j)
+      #StartValid = "centerFrame.contentDocument.getElementsByClassName('dgrid-cell dgrid-cell-padding dgrid-column-4 field-statusTxt')[%s].getElementsByTagName('a')[0].click()" %(str(i))
+      #execute_script(StartValid) #Click on first "Start Data Validation" 
+      #browser.execute_script("centerFrame.contentDocument.getElementById('nextBtn_label').click()") #Click on "Continue Publishing Data"
+      #time.sleep(10)
+      #browser.execute_script("centerFrame.contentDocument.getElementById('ap-deselect-all-0').click()") #Deselect whole last column
+      #time.sleep(1)
+      #browser.execute_script("centerFrame.contentDocument.getElementById('nextBtn_label').click()") #Click on "Continue Publishing Data"
+      #time.sleep(5)
+      #browser.execute_script("centerFrame.contentDocument.getElementsByClassName('dijitReset dijitCheckBoxInput')[1].click()") #Click on middle bullet
+      #time.sleep(1)
+      #browser.execute_script("centerFrame.contentDocument.getElementById('cancelLink').click()") #Click Cancel
+      #time.sleep(5)
+      #browser.execute_script("centerFrame.contentDocument.getElementById('doneBtn_label').click()") #Click on "Complete Publishing Data"
+      #time.sleep(5)
 browser.quit()
