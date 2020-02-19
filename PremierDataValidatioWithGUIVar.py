@@ -5,17 +5,29 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from selenium.webdriver.common.by import By
+import linecache
 
-Time = "3:00"
+Time = "1:00"
 
 with open("string.txt" , 'r') as file:
     pswd = file.read()
+file.close()
 lookup = Time
 
 with open("PremierVariables.txt") as myFile:
     for num, line in enumerate(myFile, 1):
         if lookup in line:
             print ('found at line:', num)
+            break
+            
+SitesFromFile = []
+for i in range(num-2,1,-1):
+    String = linecache.getline("PremierVariables.txt", i)
+    if (String == "Selected Sites:\n"):  
+        break
+    else:
+        SitesFromFile.append(String)
+print(SitesFromFile)
 # browser = webdriver.Chrome(executable_path=r'C:\Users\Administrator\AppData\Local\chromedriver_win32\chromedriver.exe')
 # browser.get('https://sso.premierinc.com/login')
 # username = browser.find_element_by_id("username")
