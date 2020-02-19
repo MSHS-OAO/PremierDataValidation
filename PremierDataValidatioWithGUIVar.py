@@ -19,7 +19,7 @@ with open("PremierVariables.txt") as myFile:
         if lookup in line:
             print ('found at line:', num)
             break
-            
+myFile.close()            
 SitesFromFile = []
 for i in range(num-2,1,-1):
     String = linecache.getline("PremierVariables.txt", i)
@@ -27,7 +27,20 @@ for i in range(num-2,1,-1):
         break
     else:
         SitesFromFile.append(String)
-print(SitesFromFile)
+NumberofSites = len(SitesFromFile)
+ChosenEntityName = []
+for i in range(0,NumberofSites,+1):
+    if(SitesFromFile[i] == "MSBI\n"):
+        ChosenEntityName.append("Mount Sinai Beth Israel")
+    elif(SitesFromFile[i] == "MSH\n"):
+        ChosenEntityName.append("The Mount Sinai Hospital")
+    elif(SitesFromFile[i] == "MSSL\n"):
+        ChosenEntityName.append("Mount Sinai St. Luke's")
+    elif(SitesFromFile[i] == "MSW\n"):
+        ChosenEntityName.append ("Mount Sinai West")
+
+        
+print(ChosenEntityName)
 # browser = webdriver.Chrome(executable_path=r'C:\Users\Administrator\AppData\Local\chromedriver_win32\chromedriver.exe')
 # browser.get('https://sso.premierinc.com/login')
 # username = browser.find_element_by_id("username")
