@@ -9,7 +9,7 @@ library(miniUI)
 #py_run_file("PremierBatchReports.py")
 #py_run_file("PremierValidTest.py")
 sites <- c("MSH","MSBI","MSSL","MSW")
-SelectedSites <- select.list(sites, graphics = T, multiple = T)
+SelectedSites <- select.list(sites, graphics = T, multiple = T, title = "Select Site")
 if (length(SelectedSites) != 0){
   write("Selected Sites:", file="PremierVariables.txt", append=T)
   write(SelectedSites, file="PremierVariables.txt",append=TRUE)
@@ -19,8 +19,8 @@ if (length(SelectedSites) != 0){
 
 Hour <- c("0:", "1:", "2:", "3:", "4:")
 Minute <- c("00" ,"05", "10","15" , "20")
-SelectedHour <-select.list(Hour, graphics = T, multiple = F)
-SelectedMinute <- select.list(Minute, graphics = T, multiple = F)
+SelectedHour <-select.list(Hour, graphics = T, multiple = F, title = "Select Hour")
+SelectedMinute <- select.list(Minute, graphics = T, multiple = F, title = "Select Minute")
 CombinedTime <- paste0(SelectedHour,SelectedMinute)
 if (CombinedTime != ""){
   write("Automation Time:", file ="PremierVariables.txt", append=T)
