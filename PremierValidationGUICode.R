@@ -17,7 +17,7 @@ if (length(SelectedSites) != 0){
   print("No site was selected")
 }
 
-Hour <- c("0:", "1:", "2:", "3:", "4:")
+Hour <- c("12:", "01:", "02:", "03:", "04:")
 Minute <- c("00" ,"05", "10","15" , "20")
 SelectedHour <-select.list(Hour, graphics = T, multiple = F)
 SelectedMinute <- select.list(Minute, graphics = T, multiple = F)
